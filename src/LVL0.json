@@ -1,0 +1,21 @@
+{
+    "targets": [
+        "f",
+        "d",
+        "s",
+        "a",
+        "q",
+        "w",
+        "e",
+        "r",
+        "t",
+        "b",
+        "v",
+        "c",
+        "x",
+        "z",
+        "g"
+    ],
+    "speed": 1,
+    "message": "LEVEL 0, START!"
+}

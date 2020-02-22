@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { string, func } from "prop-types";
+import { bool, func, number, string } from "prop-types";
 
 import { makeStyles } from '@material-ui/core/styles';
 
 const initialLeft = 448;
-const timeout = 50;
 
-const Challenge = ({ target, fail }) => {
+const Challenge = ({ target, fail, reset, speed }) => {
     const [left, setLeft] = useState(initialLeft);
     const stop = useRef(false);
 
@@ -19,11 +18,15 @@ const Challenge = ({ target, fail }) => {
         },
     })();
 
-
     if (!left) {
-        fail();
+        stop.current = true;
+        setTimeout(fail, speed);
     } else {
-        setTimeout(() => { !stop.current && setLeft(left - 1); }, timeout)
+        setTimeout(() => { !stop.current && setLeft(left - 1); }, speed)
+    }
+
+    if (reset) {
+        setLeft(initialLeft);
     }
 
     useEffect(() => {
@@ -42,4 +45,6 @@ export default Challenge;
 Challenge.propTypes = {
     target: string,
     fail: func,
+    reset: bool,
+    speed: number,
 }
